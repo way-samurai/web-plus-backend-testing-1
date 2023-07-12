@@ -1,3 +1,4 @@
+import { create } from 'domain';
 import { Post, PostsService } from './posts.service';
 
 describe('PostsService', () => {
@@ -13,10 +14,19 @@ describe('PostsService', () => {
   });
 
   it('should add a new post', () => {
-    // реализуйте тест-кейс
+    const createdPost = postsService.create(post);
+    
+    expect(createdPost).toEqual({
+      id: expect.any(String),
+      text: 'Mocked post',
+      date: expect.any(String),
+    });
   });
 
   it('should find a post', () => {
-    // реализуйте тест-кейс
+    const createdPost = postsService.create(post);
+    const foundPost = postsService.find(createdPost.id);
+
+    expect(foundPost).toEqual(createdPost);
   });
 });
